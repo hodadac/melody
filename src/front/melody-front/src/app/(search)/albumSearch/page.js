@@ -6,7 +6,7 @@ class SongManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            songs: [],
+            albums: [],
             newSong: {
                 title: '',
                 songInfo: '',
@@ -24,7 +24,7 @@ class SongManager extends Component {
     loadSongs = () => {
         axios.get('/api/albums') // Replace with your API endpoint
             .then((response) => {
-                this.setState({ songs: response.data });
+                this.setState({ albums: response.data });
             })
             .catch((error) => {
                 console.error('Error loading songs:', error);

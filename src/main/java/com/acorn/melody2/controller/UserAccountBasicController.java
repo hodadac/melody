@@ -20,6 +20,12 @@ public class UserAccountBasicController {
         this.userAccountService = userAccountService;
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserAccount> confirmUserAccount(@RequestBody UserAccount userAccount){
+        Optional<UserAccount> member = userAccountService.confirmUserAccount(userAccount);
+        return member.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping
     public ResponseEntity<List<UserAccount>> getAllUserAccounts() {
         List<UserAccount> userAccounts = userAccountService.getAllUserAccounts();

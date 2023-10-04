@@ -1,9 +1,13 @@
 "use client"
 
 import Link from "next/link";
+import React,{useEffect,useState} from "react";
 import ClientComponent from "../components/ClientComponent";
 
+
+
 const Home = () => {
+
     return (
         <div>
             <h1>Server Component</h1>

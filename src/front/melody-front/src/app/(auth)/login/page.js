@@ -1,18 +1,17 @@
-// app/(auth)/layout.js
-"use client"
+'use client'
 
-import { ReactNode } from "react"
+import LoginForm from "../../../components/user/LoginForm";
 
-// type LayoutProps = {
-//     children: ReactNode
-// }
+function AuthPage(){
 
-const AuthLayout = (children ) => {
-    return (
-        <div className="flex flex-col min-h-screen items-center justify-center bg-gray-100 text-black">
-            <div className="bg-white p-8 rounded shadow-md">{children}</div>
+    return(
+        <div className="py-8">
+            <h1 className="text-3xl font-bold mb-4">Authentication Login Page</h1>
+            <LoginForm/>
         </div>
+
     )
+
 }
 
-export default AuthLayout
+export default AuthPage;

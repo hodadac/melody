@@ -16,6 +16,10 @@ public class UserAccountService {
         this.userAccountRepository = userAccountRepository;
     }
 
+    public Optional<UserAccount> confirmUserAccount(UserAccount userAccount){
+        return userAccountRepository.findByEmailAndPassword(userAccount.getEmail(),userAccount.getPassword());
+    }
+
     public List<UserAccount> getAllUserAccounts() {
         return userAccountRepository.findAll();
     }

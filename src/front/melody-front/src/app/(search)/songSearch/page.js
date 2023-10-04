@@ -81,7 +81,7 @@ class SongManager extends Component {
 
         return (
             <div className="max-w-md mx-auto p-4">
-                <h2 className="text-3xl font-semibold mb-4">Song Manager</h2>
+                <h2 className="text-3xl font-semibold mb-4">Song</h2>
 
                 {/* Add Song Form */}
                 {/*<div className="mb-4">*/}
@@ -110,7 +110,7 @@ class SongManager extends Component {
 
                 {/* Search */}
                 <div className="mb-4">
-                    <h3 className="text-xl font-semibold mb-2">Search Songs</h3>
+                    <h3 className="text-xl font-semibold mb-2">Search</h3>
                     <input
                         type="text"
                         name="searchKeyword"
@@ -132,6 +132,7 @@ class SongManager extends Component {
                             <li key={song.songId} className="border-b py-2">
                                 <p>{song.title}</p>
                                 <p className="text-gray-600">{song.songInfo}</p>
+                                <p>{song.album.releaseDate}</p>
                             </li>
                         ))}
                     </ul>

@@ -27,8 +27,16 @@ function HeaderItem(){
                 key:'home',
             },
             {
-                href:'/search',
-                key:'search',
+                href:'/songSearch',
+                key:'songSearch',
+            },
+            {
+                href:'/albumSearch',
+                key:'albumSearch',
+            },
+            {
+                href:'/artistSearch',
+                key:'artistSearch',
             },
             {
                 href:'/logout',

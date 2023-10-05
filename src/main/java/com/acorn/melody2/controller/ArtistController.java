@@ -30,9 +30,14 @@ public class ArtistController {
 
     @GetMapping("/search/solo")
     public List<SoloArtist> searchSolosByTitle(@RequestParam String title) {
-        List<SoloArtist> soloArtists = soloArtistService.searchSoloArtistByTitle(title);
-        logger.warn("Songs found: {}", soloArtists); // Log the list as a string
-        return soloArtists;
+        if(title==null){
+            return null;
+        }else{
+            List<SoloArtist> soloArtists = soloArtistService.searchSoloArtistByTitle(title);
+            logger.warn("Songs found: {}", soloArtists); // Log the list as a string
+            return soloArtists;
+        }
+
     }
 
     @GetMapping("/search/group")

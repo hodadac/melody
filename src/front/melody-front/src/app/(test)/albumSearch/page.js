@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class SongManager extends Component {
+class AlbumManager extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            songs: [],
+            albums: [],
             newSong: {
                 title: '',
                 songInfo: '',
@@ -18,13 +18,13 @@ class SongManager extends Component {
     }
 
     componentDidMount() {
-        this.loadSongs();
+        this.loadAlbums();
     }
 
-    loadSongs = () => {
+    loadAlbums = () => {
         axios.get('/api/albums') // Replace with your API endpoint
             .then((response) => {
-                this.setState({ songs: response.data });
+                this.setState({ albums: response.data });
             })
             .catch((error) => {
                 console.error('Error loading songs:', error);
@@ -37,9 +37,9 @@ class SongManager extends Component {
     };
 
 
-    handleArtistSearch = () => {
+    handleSearch = () => {
         const { searchKeyword } = this.state;
-        axios.get(`/api/artists/search/solo/?title=${searchKeyword}`) // Replace with your API endpoint
+        axios.get(`/api/albums/search?title=${decodeURIComponent(searchKeyword)}`) // Replace with your API endpoint
             .then((response) => {
                 console.log("search called");
                 console.log(response.data);
@@ -51,12 +51,12 @@ class SongManager extends Component {
     };
 
     render() {
-        const { songs, searchKeyword } = this.state;
-        console.log(songs);
+        const { albums, searchKeyword } = this.state;
+        console.log(albums);
 
         return (
             <div className="max-w-md mx-auto p-4">
-                <h2 className="text-3xl font-semibold mb-4">Artist</h2>
+                <h2 className="text-3xl font-semibold mb-4">Album</h2>
 
                 <div className="mb-4">
                     <h3 className="text-xl font-semibold mb-2">Search</h3>
@@ -68,7 +68,7 @@ class SongManager extends Component {
                         onChange={this.handleInputChange}
                         className="border rounded-md p-2 w-full mb-2"
                     />
-                    <button onClick={this.handleArtistSearch} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    <button onClick={this.handleSearch} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
                         Search
                     </button>
                 </div>
@@ -77,10 +77,10 @@ class SongManager extends Component {
                 <div className="mb-4">
                     <h3 className="text-xl font-semibold mb-2">Search Results</h3>
                     <ul>
-                        {this.state.searchResults.map((solo) => ( // Update this line
-                            <li key={solo.soloArtistId} className="border-b py-2">
-                                <p>{solo.singerName}</p>
-                                <p className="text-gray-600">{solo.singerInfo}</p>
+                        {this.state.searchResults.map((album) => ( // Update this line
+                            <li key={album.albumId} className="border-b py-2">
+                                <p>{album.albumTitle}</p>
+                                <p className="text-gray-600">{album.albumInfo}</p>
                             </li>
                         ))}
                     </ul>
@@ -92,4 +92,4 @@ class SongManager extends Component {
     }
 }
 
-export default SongManager;
+export default AlbumManager;

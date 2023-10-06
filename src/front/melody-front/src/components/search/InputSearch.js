@@ -1,15 +1,18 @@
 "use client"
 import React, {useState} from "react";
-import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 function InputSearch(){
     const [inputKeyword,setInputKeyword] = useState('');
     const handleInputChange = (e) => {
         setInputKeyword(e.target.value);
     };
-
-    return (
-       <>
+    const router = useRouter();
+    const onClickKey = (e) =>{
+        router.push(`/total/${inputKeyword}`);
+    }
+    return(
+    <>
         <input
             type="text"
             name="searchKeyword"
@@ -18,14 +21,15 @@ function InputSearch(){
             onChange={handleInputChange}
             className="border rounded-md p-2 w-full mb-2"
         />
-        <Link href={{
-            pathname:'/totalSearch/resultSearch',
-            query:{searchKeyword:inputKeyword,
-            }}}>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Search</button>
-        </Link>
-       </>
-    );
+        <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            onClick={onClickKey}
+        >
+            Search
+        </button>
+    </>
+    )
+
 }
 
-export  default InputSearch;
+export default InputSearch;

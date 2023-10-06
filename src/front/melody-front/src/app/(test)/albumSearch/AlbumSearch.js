@@ -1,30 +1,27 @@
-"use client"
-import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
+export async function getData(key){
+    const response = axios.get(`/api/albums/search?title=${key}`) // Replace with your API endpoint
+    const data = response.data();
+    console.log(data)
+    return data
+}
 
-function AlbumSearch(props) {
-    if(props.searchKeyword==null||props.searchKeyword===''){
+export default async function AlbumSearch(props) {
+    if(props.searchKeyword===''||props.searchKeyword===null){
         return(
             <>
             <p>null</p>
             </>
         )
     }else{
-        const [albumsResult,setAlbumsResult] = useState('');
-        console.log(props.searchKeyword)
-        axios.get(`/api/albums/search?title=${props.searchKeyword}`) // Replace with your API endpoint
-            .then((response) => {
-                setAlbumsResult(response.data)
-            })
-            .catch((error) => {
-                console.error('Error loading songs:', error);
-            });
-
+        const searchResult = getData(props.searchKeyword)
+        const [albumsResult] = Promise.all([searchResult])
         return (
             <>
+                {/* Search Results */}
                 <div className="mb-4">
-                    <h3 className="text-xl font-semibold mb-2">Song Results</h3>
+                    <h3 className="text-xl font-semibold mb-2">Album Results</h3>
                     {Array.isArray(albumsResult)
                         ?albumsResult.map((album) => {
                             return<ul>
@@ -36,11 +33,11 @@ function AlbumSearch(props) {
                         }) // Update this line
                         :null
                     }
+
                 </div>
             </>
         );
     }
 
-}
 
-export default AlbumSearch;
+}

@@ -48,8 +48,13 @@ public class AlbumController {
 
     @GetMapping("/search")
     public List<Album> searchAlbumsByTitle(@RequestParam String title) {
-        List<Album> albums = albumService.searchAlbumsByTitle(title);
-        logger.warn("Songs found: {}", albums); // Log the list as a string
-        return albums;
+        if(title.trim().isEmpty()){
+            return null;
+        }else{
+            List<Album> albums = albumService.searchAlbumsByTitle(title);
+            logger.warn("Songs found: {}", albums); // Log the list as a string
+            return albums;
+        }
+
     }
 }

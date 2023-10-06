@@ -4,7 +4,7 @@ import SongSearch from "../../../components/search/SongSearch";
 import AlbumSearch from "../../../components/search/AlbumSearch";
 import ArtistSearch from "../../../components/search/ArtistSearch";
 
-export default function searchPage(){
+export default function SearchPage(){
     const [inputKeyword,setInputKeyword] = useState('')
     const [searchKeyword,setSearchKeyword] = useState('');
     const handleInputChange = (e) =>{
@@ -28,9 +28,9 @@ export default function searchPage(){
                 Search
             </button>
 
-            {/*<SongSearch searchKeyword={searchKeyword}/>*/}
+            <SongSearch searchKeyword={searchKeyword}/>
             <AlbumSearch searchKeyword={searchKeyword}/>
-            {/*<ArtistSearch searchKeyword={searchKeyword}/>*/}
+            <ArtistSearch searchKeyword={searchKeyword}/>
 
         </>
     )

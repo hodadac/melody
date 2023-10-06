@@ -44,6 +44,9 @@ public class SongController {
     // Search songs by title
     @GetMapping("/search")
     public List<Song> searchSongsByTitle(@RequestParam String title) {
+        if(title.trim().isEmpty()){
+            return null;
+        }
         List<Song> songs = songService.searchSongsByTitle(title);
         logger.warn("Songs found: {}", songs); // Log the list as a string
         return songs;

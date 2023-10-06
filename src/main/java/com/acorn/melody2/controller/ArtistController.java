@@ -30,18 +30,21 @@ public class ArtistController {
 
     @GetMapping("/search/solo")
     public List<SoloArtist> searchSolosByTitle(@RequestParam String title) {
-        if(title==null){
+        if(title.trim().isEmpty()){
             return null;
-        }else{
-            List<SoloArtist> soloArtists = soloArtistService.searchSoloArtistByTitle(title);
-            logger.warn("Songs found: {}", soloArtists); // Log the list as a string
-            return soloArtists;
         }
+        List<SoloArtist> soloArtists = soloArtistService.searchSoloArtistByTitle(title);
+        logger.warn("Songs found: {}", soloArtists); // Log the list as a string
+        return soloArtists;
+
 
     }
 
     @GetMapping("/search/group")
     public List<GroupArtist> searchGroupsByTitle(@RequestParam String title) {
+        if(title.trim().isEmpty()){
+            return null;
+        }
         List<GroupArtist> songs = groupArtistService.searchGroupArtistByTitle(title);
         logger.warn("Songs found: {}", songs); // Log the list as a string
         return songs;

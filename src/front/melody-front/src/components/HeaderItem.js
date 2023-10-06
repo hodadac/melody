@@ -18,7 +18,7 @@ function HeaderItem(){
             console.log('isLogin :', isLogin)
 
         }
-    })
+    }, [isLogin])
 
     if(isLogin){
         links = [

@@ -14,7 +14,7 @@ function SongSearch(props) {
             .catch((error) => {
                 console.error('Error loading songs:', error);
             });
-    }, []);
+    }, [props.searchKeyword]);
 
     return (
         <>
@@ -23,8 +23,8 @@ function SongSearch(props) {
                 <h3 className="text-xl font-semibold mb-2">Song Results</h3>
                 {Array.isArray(songsResult)
                     ?songsResult.map((song) => {
-                        return<ul>
-                            <li key={song.songId} className="border-b py-2">
+                        return<ul key={song.songId}>
+                            <li  className="border-b py-2">
                                 <p>{song.title}</p>
                                 <p className="text-gray-600">{song.songInfo}</p>
                                 <p>{song.album.releaseDate}</p>
